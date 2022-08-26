@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import Card from './card'
+const React=require('react');
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ //let [author,setau]=React.useState("")
+ //let [content,setcn]=React.useState("")
+let url="https://api.quotable.io/random";
+let getQuote=()=>{
+  fetch(url).then(data=>data.json()).then(item=>{
+  
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+    
+      <Card author={item.author} content={item.content} />
+    
+    );
+    })
+}
+return getQuote()
 }
 
 export default App;
